@@ -20,6 +20,12 @@ app.get("/message/:id/:user", (request, response) => {
    `)
 })
 
+app.post("/users", (request, response) => {
+
+
+   response.send(`Você chamou o post`)
+})
+
 // Pra ele sempre ficar observando a porta que ele irá realizar as funções e outras coisas que adicionarmos à API utilizamos o Listen
 const PORT = 3333
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`))
