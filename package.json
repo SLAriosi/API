@@ -4,7 +4,7 @@
   "description": "An API that I will create using the help of a course in Rocketseat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/server.js"
   },
   "author": "Ariosi Lucas | github: SLAriosi",
   "license": "ISC",
