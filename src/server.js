@@ -19,11 +19,13 @@ app.get("/message/:id/:user", (request, response) => {
       Para o usuário ${user}.
    `)
 })
+//Esse app.use é necessário utilizar para que o sistema entenda que vamos passar essas informações por meio de uma expressão JSON(), ou outra dependendo do que estamos trabalhando, se não utilizarmos vai dar erro
+app.use(express.json())
 
 app.post("/users", (request, response) => {
+   const { name, email, password} = request.body
 
-
-   response.send(`Você chamou o post`)
+   response.json({ name,email,password })
 })
 
 // Pra ele sempre ficar observando a porta que ele irá realizar as funções e outras coisas que adicionarmos à API utilizamos o Listen
