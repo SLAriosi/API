@@ -17,7 +17,8 @@ const usersRoutes = Router();
 const usersController = new UsersController()
 
 
-usersRoutes.post("/",/* myMiddleware,*/usersController.create)
+usersRoutes.post("/",/* myMiddleware,*/usersController.create);
+usersRoutes.put("/:id", usersController.update);
 
 module.exports = usersRoutes;
 
