@@ -67,3 +67,5 @@ class UsersController {
 module.exports = UsersController;
 
 // Linha 09, utilizamos o status() para que possamos adicionar informações a mais no nosso sistema, nesse caso ele adiciona status do sistema, existem varios status que podemos colocar, desde 200 a 400 e 500, nesse caso da linha 5 usamos o 201 para o status de criado.
+
+//added Knex
