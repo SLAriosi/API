@@ -1,14 +1,14 @@
 require("express-async-errors");
-
 const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("./utils/AppError")
 // Ele é usado para fazer as API, ele é o garçom, e nós definimos a porta ali abaixo no const PORT para ele saber em qual restaurante (Porta do localhost) que ele vai trabalhar.
 const express = require("express")
-
 const routes = require("./routes")
 //Aqui é onde colocamos oque queremos fazer em certa parte da API.
-const app = express()
 //Utilizmos o .get para selecionarmos qual será a rota que aparecerá certa coisa para o usuário, exemplo se eu colocar ali no lugar do "/" um "/message" então no seu browser você tem que colocar o localhost:3333/message para que apareça o Hello World! 
+migrationsRun();
+
+const app = express()
 app.get("/message", (request, response) => {
    response.send("Hello World")
 })
@@ -26,7 +26,7 @@ app.get("/message/:id/:user", (request, response) => {
 //Esse app.use é necessário utilizar para que o sistema entenda que vamos passar essas informações por meio de uma expressão JSON(), ou outra dependendo do que estamos trabalhando, se não utilizarmos vai dar erro
 app.use(express.json())
 app.use(routes);
-migrationsRun();
+
 
 app.use(( error, request, response, next) => {
    if (error instanceof AppError) {
