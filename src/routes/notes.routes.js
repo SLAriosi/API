@@ -18,6 +18,7 @@ const notesController = new NotesController();
 
 
 notesRoutes.post("/:user_id",/* myMiddleware,*/notesController.create);
+notesRoutes.get("/:id",/* myMiddleware,*/notesController.show);
 
 module.exports = notesRoutes;
 
