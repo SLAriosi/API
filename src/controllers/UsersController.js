@@ -18,7 +18,7 @@ class UsersController {
       await database.run("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", [name, email, hashedPassword])
 
       if (!name) {
-         throw new AppError("Nome é obrigatório!!")
+         throw new AppError("Nome é obrigatório!!", 409)
       }
 
       response.status(201).json({ name, email, password })
