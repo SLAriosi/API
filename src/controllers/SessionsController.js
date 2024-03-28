@@ -2,6 +2,12 @@ const knex = require("../database/knex")
 const AppError = require("../utils/AppError")
 const { compare } = require("bcryptjs")
 
+// Utilizamos o authConfig uqe deixamos separado na pasta chamada configs dentro do arquivo auth.
+const authConfig = require ("../configs/auth")
+
+// Importamos o sign que é um método do jsonwebtoken 
+const { sign } = require("jsonwebtoken")
+
 const { response, request } = require("express")
 
 class SessionsContoller {
@@ -26,9 +32,20 @@ class SessionsContoller {
       if (!passwordMatched) {
          throw new AppError("Email e/ou senha inválidos", 401)
       }
+      
+      const { secret , expiresIn } = authConfig.jwt
+
+      // Aqui no sign passamos um objeto vazio que podemos usar para passar outras informações como configs adicionais, podemos passar payloads ou objetos etc.
+      // Aqui também passamos qual a chave secreta no = secret. e no subject nós estamos colocando qual o conteúdo que estamos inserindo dentro desse token (nesse caso é o id do usuário).
+      // E por fim no expiresIn passamos a data de Expiração do Token, que está pré setado na pasta ./src/configs/auth.js
+      const token = sign({}, secret, {
+         subject: String(user.id),
+         expiresIn
+      })
 
       // Caso tenha passado por todas as validações, então o usuário chegará aqui onde irá mostrar tudo que tem sobre o user.
-      return response.json( user )
+      // E também será mostrado o token que inserimos ali emcima na linha 41.
+      return response.json({ user, token })
    }
 }
 
