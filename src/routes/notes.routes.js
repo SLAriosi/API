@@ -4,6 +4,8 @@ const NotesController = require("../controllers/NotesController")
 
 const notesRoutes = Router();
 
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated")
+
 // function myMiddleware(request, response, next) {
 //    console.log("Você passou pelo Middleware!");
    
@@ -16,9 +18,10 @@ const notesRoutes = Router();
 
 const notesController = new NotesController();
 
+notesRoutes.use(ensureAuthenticated);
 
 notesRoutes.get("/",/* myMiddleware,*/notesController.index);
-notesRoutes.post("/:user_id",/* myMiddleware,*/notesController.create);
+notesRoutes.post("/",/* myMiddleware,*/notesController.create);
 notesRoutes.get("/:id",/* myMiddleware,*/notesController.show);
 notesRoutes.delete("/:id",/* myMiddleware,*/notesController.delete);
 
