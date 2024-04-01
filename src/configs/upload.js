@@ -8,7 +8,7 @@ const crypto = require("crypto")
 
 // Essas constantes com o nome inteiro maiúsculo é pra idicar que são variáveis para configuração. (Nesse caso para usarmos no Uload de imagens.)
 const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp")
-const UPLOADS_FOLDER = path.resolve(__dirname, "uploads")
+const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads")
 
 // Utilizamos o multer como a biblioteca que está sendo usada para configuração inicial
 const MULTER = {
