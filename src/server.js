@@ -4,12 +4,14 @@ const AppError = require("./utils/AppError")
 // Ele é usado para fazer as API, ele é o garçom, e nós definimos a porta ali abaixo no const PORT para ele saber em qual restaurante (Porta do localhost) que ele vai trabalhar.
 const express = require("express")
 const routes = require("./routes")
+const cors = require("cors")
 const uploadConfig = require("./configs/upload")
 //Aqui é onde colocamos oque queremos fazer em certa parte da API.
 //Utilizmos o .get para selecionarmos qual será a rota que aparecerá certa coisa para o usuário, exemplo se eu colocar ali no lugar do "/" um "/message" então no seu browser você tem que colocar o localhost:3333/message para que apareça o Hello World! 
 migrationsRun();
 
 const app = express()
+app.use(cors())
 app.get("/message", (request, response) => {
    response.send("Hello World")
 })
