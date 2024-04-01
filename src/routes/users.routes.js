@@ -2,6 +2,8 @@ const { Router } = require("express");
 
 const UsersController = require("../controllers/UsersController")
 
+const UserAvatarController = require("../controllers/UserAvatarController")
+
 const usersRoutes = Router();
 
 const uploadConfig = require("../configs/upload")
@@ -26,6 +28,8 @@ const upload = multer(uploadConfig.MULTER)
 
 const usersController = new UsersController()
 
+const userAvatarController = new UserAvatarController()
+
 
 usersRoutes.post("/",/* myMiddleware,*/usersController.create);
 
@@ -36,10 +40,7 @@ usersRoutes.put("/", ensureAuthenticated, usersController.update);
 
 // O patch é quando queremos atualizar um (apenas 1) campo específico do nosso banco de dados. Já o put é pra quando queremos atualizar mais de 1.
 // Nesse caso queremos só atualizar a imagem do avatar do usuário por esse motivo utilizamos o patch.
-usersRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), /* Aqui vem um controller */ (request, response) => {
-   console.log(request.file.filename);
-   response.json();
-});
+usersRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), userAvatarController.update);
 
 
 module.exports = usersRoutes;
