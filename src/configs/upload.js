@@ -28,9 +28,9 @@ const MULTER = {
          const fileName = `${fileHash}-${file.originalname}` // Assim evitamos que o arquivo tenha nomes iguais.
 
          return callback(null, fileName);
-      }
-   })
-}
+      },
+   }),
+};
 
 module.exports = {
    TMP_FOLDER,

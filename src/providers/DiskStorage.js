@@ -20,8 +20,8 @@ class DiskStorage {
          // Agora usando o path.resolve, nós utilizamos não para mudar o nome do arquivo, e sim para mudarmos o arquivo de lugar.
          // Aqui pegamos o arquivo dentro da pasta temporária (TMP_FOLDER), passamos o nome do arquivo (file), e aí levamos ele para a nova pasta.
          // Utilizando o path.resolve novamente abaixo.
-         path.resolve(uploadConfig.TMP_FOLDER, file, ),
-         path.resolve(uploadConfig.UPLOADS_FOLDER, file, )
+         path.resolve(uploadConfig.TMP_FOLDER, file),
+         path.resolve(uploadConfig.UPLOADS_FOLDER, file)
       )
 
          // E por fim nós retornamos o arquivo.
@@ -29,13 +29,15 @@ class DiskStorage {
    }
 
    // Aqui fica a função para deletarmos o arquivo.
-   async deleteFile() {
+   async deleteFile(file) {
       // Usamos o filePath para pegarmos o endereço desse arquivo. E vamos procurar esse arquivo lá na nossa pasta uploadsConfig, mas dentro do arquivo UPLOADS.FOLDER.
       const filePath = path.resolve(uploadConfig.UPLOADS_FOLDER, file)
 
       try {
-         await fs.promises.stat(filePath)
+
+         await fs.promises.stat(filePath);
       } catch {
+
          return;
       }
 
