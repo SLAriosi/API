@@ -71,6 +71,7 @@ class NotesController {
           .innerJoin('tags', function() {
              this.on('tags.note_id', '=', 'notes.id');
            })
+           .groupBy("notes.id")
            .whereIn('tags.name', filterTags);
 
       } else {
