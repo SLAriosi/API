@@ -1,4 +1,6 @@
 require("express-async-errors");
+require("dotenv/config")
+
 const migrationsRun = require("./database/sqlite/migrations")
 const AppError = require("./utils/AppError")
 // Ele é usado para fazer as API, ele é o garçom, e nós definimos a porta ali abaixo no const PORT para ele saber em qual restaurante (Porta do localhost) que ele vai trabalhar.
@@ -52,5 +54,5 @@ app.use(( error, request, response, next) => {
 })
 
 // Pra ele sempre ficar observando a porta que ele irá realizar as funções e outras coisas que adicionarmos à API utilizamos o Listen
-const PORT = 3333
+const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
