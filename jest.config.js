@@ -8,6 +8,6 @@ module.exports = {
   // Aqui passamos um vetor, e dentro dizemos qual o padrão dos nossos teste, por isso usamos o **/*.spec.js em qualquer pasta, podem ter qualquer nome, mas sempre vai ser .spec.js 
   // esse rootDir é meio que uma variável global do próprio Jest que vai pegar a raiz do nosso projeto.
   testMatch: [
-    "<rootDir>/**/*.spec.js"
+    "<rootDir>src/**/*.spec.js"
   ],
 }
